@@ -1,6 +1,7 @@
 #include <QCoreApplication>
 #include <iostream>
 #include <string>
+
 int main()
 {
 
@@ -114,6 +115,7 @@ int main()
 
     //Ejercicio 14
 
+    /*
     int CUp = 1;
     int CDw = 50;
     std::string Spc = "   ";
@@ -123,5 +125,90 @@ int main()
         CUp++;
         CDw--;
     }
+    */
+
+    //Ejercicio 16
+
+    /*
+    int Lim = 1;
+    int cont = 0;
+    int Sum = 0;
+    while (Lim != 0)
+    {
+        std::cout << "Ingrese un numero: ";
+        std::cin >> Lim;
+        std::cout << "\n";
+        cont++;
+        Sum+= Lim;
+    }
+    if ((Lim == 0) && (Sum == 0))
+    {
+        std::cout << "No hay promedio que calcular";
+    }
+    else
+    {
+        std::cout << "El promedio es: " << (Sum)/(cont-1);
+    }
+    */
+
+    //Ejercicio 18
+
+    /*
+    int Num;
+    std::cout << "Ingrese un numero: ";
+    std::cin >> Num;
+    std::cout << "\n";
+    int x = sqrt(Num);
+        if((x*x) == Num)
+    {
+        std::cout << Num << " Es cuadrado perfecto";
+    }
+    else
+    {
+        std::cout << Num << " No es cuadrado perfecto";
+    }
+    */
+
+    //Ejercicio 20
+
+    /*
+    std::string Num;
+    bool c = true;
+    std::cout << "Ingrese un numero: ";
+    std::cin >> Num;
+    int l = Num.length();
+    for(int i = 0; i<= (l/2); i++)
+    {
+        if(Num[i] != Num[(l-1)-i])
+        {
+            std::cout << Num << " No es palindromo";
+            c = false;
+            break;
+        }
+    }
+
+    if (c)
+    {
+        std::cout << Num << " Es palindromo";
+    }
+    */
+
+    //Ejercicio 22
+
+    /*
+    int Seg,Hours,Min,Time;
+    std::cout << "Ingrese una cantidad de segundos: ";
+    std::cin >> Time;
+    std::cout << "\n";
+
+    Hours = Time/3600;
+    Time= Time%3600;
+    Min = Time/60;
+    Seg = Time%60;
+
+    std::cout << Hours << ":" << Min << ":" << Seg;
+    */
+
+    //Ejercicio
 
 }
