@@ -9,11 +9,12 @@ int main()
     //Ejercicio 2----------------------------------------------------------------------------------------------------------------------------------------
 
 
-    /*
+
     int Num;
     std::cout << "Ingrese un numero: ";
     std::cin >> Num;
-    std::cout << "\n";
+    std::cout << Num;
+    /*
     if(Num%2 == 0){
         std::cout << Num << " Es par";
     }
