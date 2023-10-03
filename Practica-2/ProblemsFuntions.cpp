@@ -316,7 +316,9 @@ void Problema_14()
 {
     int Matriz[5][5]={};
     int fill = 1;
+    int* pntc = &Matriz[0][0];
 
+    std::cout << "Matriz original" << std::endl;
     for(int f = 0; f<5;f++)
     {
         for(int c = 0; c<5;c++)
@@ -328,16 +330,109 @@ void Problema_14()
 
     for(int f = 0; f<5; f++)
     {
-        for(int c = 0; c<5;c++){std::cout << Matriz[f][c];}
+        for(int c = 0; c<5;c++)
+        {std::cout << Matriz[f][c] << " ";}
         std::cout << std::endl;
     }
+
+    std::cout << std::endl;
+    fill = 1;
+    std::cout << "Rotacion 90 grados" << std::endl;
+
+    for(int f = 4;f>=0;f--)
+    {
+        for(int c = 0; c<5;c++)
+        {
+            Matriz[c][f] = fill;
+            fill++;
+        }
+    }
+
+    for(int f = 0; f<5; f++)
+    {
+        for(int c = 0; c<5;c++)
+        {std::cout << Matriz[f][c] << " ";}
+        std::cout << std::endl;
+    }
+
+    std::cout << std::endl;
+    fill = 1;
+    std::cout << "Rotacion 180 grados" << std::endl;
+
+    for(int f = 4;f>=0;f--)
+    {
+        for(int c = 0; c<5;c++)
+        {
+            Matriz[f][c] = fill;
+            fill++;
+        }
+    }
+
+    for(int f = 0; f<5; f++)
+    {
+        for(int c = 0; c<5;c++)
+        {std::cout << Matriz[f][c] << " ";}
+        std::cout << std::endl;
+    }
+
+    std::cout << std::endl;
+    fill = 1;
+    std::cout << "Rotacion 270 grados" << std::endl;
+
+    for(int f = 0; f<5;f++)
+    {
+        for(int c = 0; c<5;c++)
+        {
+            Matriz[c][f] = fill;
+            fill++;
+        }
+    }
+
+    for(int f = 0; f<5; f++)
+    {
+        for(int c = 0; c<5;c++)
+        {std::cout << Matriz[f][c] << " ";}
+        std::cout << std::endl;
+    }
+
 
 }
 
 void Problema_16()
 {
+    int size,dbsize,bupSize,DBnFact = 1,CFact = 1;
+    std::cout << "Inserte el tamanio de la cuadricula: ";
+    std:: cin >> size;
+    dbsize = size*2;
+    bupSize = size;
 
+    do
+    {
+        CFact = CFact*size*(size-1);
+        size = size - 2;
+        if (size == 1)
+        {
+            size = -1;
+        }
+
+    }
+    while(size > 0);
+
+    do
+    {
+        DBnFact = DBnFact*dbsize*(dbsize-1);
+        dbsize = dbsize - 2;
+        if (dbsize == 1)
+        {
+            dbsize = -1;
+        }
+
+    }
+    while(dbsize > 0);
+
+    std::cout << "En una cuadricula de " << bupSize << "x" << bupSize << "hay: " << (DBnFact/(CFact*CFact)) << std::endl;
 }
+
 void Problema_18()
 {
     bool c = true;
