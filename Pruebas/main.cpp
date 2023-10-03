@@ -4,28 +4,19 @@ void patron4();
 
 int main()
 {
-    patron4();
-}
+    int Num = 9;
+    unsigned int CFact = 1;
 
-void patron4()
-/*Genera el patron 4*/
-{
-    int LnPtr4[8]={};
-    int* pnt, pnt2;
+    do
+    {
+        CFact = CFact*Num*(Num-1);
+        Num = Num - 2;
+        if (Num == 1)
+        {
+            Num = -1;
+        }
 
-    for(int posAr = 0;posAr<8;posAr++)
-    {
-        if(posAr<4)
-        {LnPtr4[posAr]=1;}
-        else
-        {LnPtr4[posAr]=0;}
     }
-    pnt = &LnPtr4[0];
-    for(int ps= 0;ps<8;ps++)
-    {
-        std::cout << *pnt;
-        pnt++;
-        //digitalWrite(pinClock,HIGH);
-        //digitalWrite(pinClock, LOW);
-    }
+    while(Num > 0);
+    std::cout << CFact;
 }

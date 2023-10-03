@@ -24,7 +24,7 @@ int main()
             case 4: Problema_4();
             break;
 
-            case 6: 0;
+            case 6: Problema_6();
             break;
 
             case 8: Problema_8();
@@ -33,16 +33,16 @@ int main()
             case 10: Problema_10();
             break;
 
-            case 12:0;
+            case 12:Problema_12();
             break;
 
-            case 14:0;
+            case 14: Problema_14();
             break;
 
-            case 16:0;
+            case 16: Problema_16();
             break;
 
-            case 18:0;
+            case 18: Problema_18();
             break;
 
             default: c=false;
