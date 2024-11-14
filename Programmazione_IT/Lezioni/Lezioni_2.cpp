@@ -5,19 +5,18 @@ using namespace std;
 int fsum(int x, int y);//Funcion de practica del uso de variables
 int optest(int x, int y);//Funcion de practica del uso de operadores
 bool iftest(int x, int y);//Funcion de practica de condicionales
+void input(int x, int y);
 
-int num1, num2;
 
-int input()
+void input(int x, int y)
 {
 
     cout << "Enter the 1st integer: ";
-    cin >> num1;
+    cin >> x;
 
     cout << "Enter the 2nd integer: ";
-    cin >> num2;
+    cin >> y;
 
-    return 0;
 }
 
 int fsum (int x, int y)
@@ -62,7 +61,4 @@ bool iftest(int x, int y)//la logica es igualmente aplicable a cualquier operado
     {
         return false;
     }
-
-
-
 }

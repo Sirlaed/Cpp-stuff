@@ -7,8 +7,14 @@ CONFIG += c++17 cmdline
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        Lezioni_10.cpp \
         Lezioni_2.cpp \
         Lezioni_3.cpp \
+        Lezioni_4.cpp \
+        Lezioni_5.cpp \
+        Lezioni_6.cpp \
+        Lezioni_7.cpp \
+        Lezioni_9.cpp \
         main.cpp
 
 # Default rules for deployment.
