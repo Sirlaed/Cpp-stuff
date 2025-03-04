@@ -7,8 +7,16 @@ CONFIG += c++17 cmdline
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+        Recop_mains.cpp \
         Studente.cpp \
-        main.cpp
+        count.cpp \
+        macchina.cpp \
+        main.cpp \
+        motore.cpp \
+        point.cpp \
+        rectangle.cpp \
+        shape.cpp \
+        triangle.cpp
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -16,4 +24,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    Studente.h
+    Studente.h \
+    count.h \
+    macchina.h \
+    motore.h \
+    point.h \
+    rectangle.h \
+    shape.h \
+    triangle.h

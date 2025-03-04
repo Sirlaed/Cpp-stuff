@@ -1,0 +1,10 @@
+debug/Recop_mains.o
+debug/Studente.o
+debug/count.o
+debug/macchina.o
+debug/main.o
+debug/motore.o
+debug/point.o
+debug/rectangle.o
+debug/shape.o
+debug/triangle.o

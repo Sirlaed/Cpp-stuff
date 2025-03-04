@@ -1,0 +1,6 @@
+Nazione		N# abitanti	Superficie
+Venezuela 	506235 		1300
+Spagna    	1545536 	500
+Argentina 	5646154 	2000
+Chile     	214515 		400
+Colombia  	15451520 	1000

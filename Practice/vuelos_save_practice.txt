@@ -1,0 +1,7 @@
+Code        Departure       Destination       Departure time       Arrival
+A7T9X1Q3        Hartsfield        Angeles        9.25        14.3
+J2L9M4N8        Heathrow        Frankfurt        12        14.5
+Z1P8K7R5        Dubai        Amsterdam        4.15        9.3
+Y3X5N1Q9        Tokyo        Barajas        20.3        21.3
+M4P2A9T7        CharlesdeGaulle        Sydney        0.3        10.45
+R9T1L3X8        Tokyo        Toronto        7.5        12.2

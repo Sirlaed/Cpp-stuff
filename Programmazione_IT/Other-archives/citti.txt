@@ -1,0 +1,9 @@
+roma
+palermo
+napoli
+venezia
+perugia
+milano
+torino
+trieste
+bari

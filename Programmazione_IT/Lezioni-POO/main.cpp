@@ -1,32 +1,48 @@
 #include <iostream>
-#include "Studente.h"
 
 using namespace std;
 
 int main()
 {
-    studente s1(13456,"Quien","Sos");
-    studente s2(95764,"Why","SoSerious");
+    cout << "Costruzione di una matrice triangulare" << endl;
 
-    s1.stampa();
-    s2.stampa();
+    int n;
+    bool c = true;
 
+    while(c)
+    {
+        cout << "Inserisci il numero de righe: ";
+        cin >> n;
 
+        if(n > 0)
+        {
+            c = false;
+        }
+        else
+        {
+            cout << "ERRORE";
+        }
+    }
 
-    /* Creare oggetti sensa constructore-----------
-    studente s1;
-    s1.set_matricola(13456);
-    s1.set_nome("Quien");
-    s1.set_cognome("Sos");
+    int* *M = new int*[n];
 
-    s1.stampa();
+    for(int i=0;i<n;i++)
+    {
+        M[i]= new int[i+1];
 
-    studente s2;
-    s2.set_matricola(95764);
-    s2.set_nome("Why");
-    s2.set_cognome("SoSerious");
+        for(int j = 0; j<(i+1);j++)
+        {
+            M[i][j] = 0;
+            cout << M[i][j];
+        }
 
-    s2.stampa();
-    */
+        cout << endl;
+    }
+
+    for(int i=0;i<n;i++)
+    {
+        delete[] M[i];
+    }
+
+    delete[] M;
 }
-

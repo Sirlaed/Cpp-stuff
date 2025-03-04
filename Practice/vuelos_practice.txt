@@ -1,0 +1,7 @@
+Code Departure Destination Departuretime Arrival
+A7T9X1Q3 Hartsfield Angeles 09.25 14.30
+J2L9M4N8 Heathrow Frankfurt 12.00 14.50
+Z1P8K7R5 Dubai Amsterdam 04.15 09.30
+Y3X5N1Q9 Tokyo Barajas 20.30 21.30
+M4P2A9T7 CharlesdeGaulle Sydney 00.30 10.45
+R9T1L3X8 Tokyo Toronto 07.50 12.20

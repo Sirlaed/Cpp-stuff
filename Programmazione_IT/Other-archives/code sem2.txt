@@ -1,0 +1,124 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/sem.h>
+#include <sys/shm.h>
+#include <sys/wait.h>
+
+void signal_sem(int sem_id);
+void wait_sem(int sem_id);
+
+int numberGeneration;
+int calculateValues;
+
+int main() 
+{
+    int shm_idA = shmget(IPC_PRIVATE, sizeof(int), 0666 | IPC_CREAT); //Inizializzazione della memoria condivisa
+    
+	if (shm_idA == -1) //Controllo di errore della inizializzazione della memoria condivisa
+	{
+		printf("P1: Shared memory error\n");
+		return 3;
+	}
+	
+	int *A = (int *)shmat(shm_idA, NULL, 0); // Creazzione della variabile condivisa
+	
+	if (A == (void *)-1) //Controllo di errore della creazzione della variabile condivisa
+	{
+		printf("P1: Shared memory attach error\n");
+		return 4;
+	}
+
+	*A = 0;  // Inizializzazione della variabile condivisa
+    
+    int shm_idB = shmget(IPC_PRIVATE, sizeof(int), 0666 | IPC_CREAT);
+    
+	if (shm_idB == -1) 
+	{
+		printf("P1: Shared memory error\n");
+		return 5;
+	}
+	
+	int *B = (int *)shmat(shm_idA, NULL, 0);
+	
+	if (B == (void *)-1) 
+	{
+		printf("P1: Shared memory attach error\n");
+		return 6;
+	}
+
+	*B = 0;  // Inizializzazione della variabile condivisa
+    
+    int numberGeneration = semget(IPC_PRIVATE, 1, 0666 | IPC_CREAT);
+    int calculateValues  = semget(IPC_PRIVATE, 1, 0666 | IPC_CREAT);
+    
+    if(semctl(numberGeneration,0,SETVAL,1)==-1)
+    {
+        printf("P1: error\n");
+		return 7; 
+    }
+    
+    if(semctl(numberGeneration,0,SETVAL,0)==-1)
+    {
+        printf("P1: error\n");
+		return 8; 
+    }
+    
+    pid_t pid = fork();
+    
+    if(pid==-1)
+    {
+        printf("P1: error\n");
+        return 9;
+    }
+    else if(pid == 0)
+    {
+        printf("P2: Booting up\n");
+        return 0;
+    }
+    
+    int end = 10;
+    
+    for(int i=0;i<end;i++)
+    {
+        printf("P1: Waiting for generate data\n");
+        wait_sem(numberGeneration);
+        
+        int operation_local = (rand()%2);
+        int A_local = (rand()%10);
+        int B_local = (rand()%10);
+        
+        (*opera)
+
+    }
+    
+    wait(NULL);
+    printf("P1: exiting\n");
+    
+    return 0;
+}
+
+
+//-------------------------------------------------------------------------------------------
+
+void signal_sem(int sem_id) {
+    struct sembuf sem_op;
+    sem_op.sem_num = 0;  // Posizione del semaforo nell'array
+    sem_op.sem_op = 1;   // Incremento del semaforo (rilascio)
+    sem_op.sem_flg = 0;  // Non usiamo flag particolari
+    if (semop(sem_id, &sem_op, 1) == -1) {
+        printf("Error: signal failed\n");
+    }
+}
+
+void wait_sem(int sem_id) {
+    struct sembuf sem_op;
+    sem_op.sem_num = 0;  // Posizione del semaforo nell'array
+    sem_op.sem_op = -1;  // Decremento del semaforo (acquisizione)
+    sem_op.sem_flg = 0;  // Non usiamo flag particolari
+    if (semop(sem_id, &sem_op, 1) == -1) {
+        printf("Error: wait failed\n");
+    }
+}

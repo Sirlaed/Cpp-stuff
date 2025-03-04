@@ -1,0 +1,10 @@
+release/Recop_mains.o
+release/Studente.o
+release/count.o
+release/macchina.o
+release/main.o
+release/motore.o
+release/point.o
+release/rectangle.o
+release/shape.o
+release/triangle.o

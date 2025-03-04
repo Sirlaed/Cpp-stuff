@@ -1,0 +1,4 @@
+Codice Descrip Prezzo Quantita
+1 penna 2.5 10
+2 gomma 2 15
+3 quaderno 3 5

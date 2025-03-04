@@ -1,13 +1,21 @@
 #include <iostream>
 #include <Studente.h>
+
 using namespace std;
 
-studente::studente(int m, string n, string cn) //Constructore de la classe studente
+studente::studente(int m, string n, string cn, int t) : test(t) //Constructore de la classe studente
 {
-    studente::set_matricola(m);
-    studente::set_nome(n);
-    studente::set_cognome(cn);
+    this->matricola = m;                      // con il " : ...(n)" se define il valore di un atributo constate in il constructore
+    this->nome = n;
+    this->cognome = cn;
+
+    //this solo essiste dentro dei metodi no dentro delle funzione amici/non amici
+
+    //stampa() == this->stampa();
 }
+
+studente::~studente()
+{cout << "disttrutore"<< endl;}
 
 int studente::get_matricola() //metodo di accesso GETTER al atributo "matricola"
 {
@@ -16,7 +24,15 @@ int studente::get_matricola() //metodo di accesso GETTER al atributo "matricola"
 
 void studente::set_matricola(int m) //metodo di accesso SETTER al atributo "matricola"
 {
-    studente::matricola = m;
+    if(m<0)
+    {
+        matricola = 1;
+    }
+    else
+    {
+        matricola = m;
+    }
+
 }
 
 string studente::get_nome() //metodo di accesso GETTER al atributo "matricola"
@@ -26,7 +42,7 @@ string studente::get_nome() //metodo di accesso GETTER al atributo "matricola"
 
 void studente::set_nome(string n) //metodo di accesso SETTER al atributo "matricola"
 {
-    studente::nome = n;
+    nome = n;
 }
 
 string studente::get_cognome() //metodo di accesso GETTER al atributo "matricola"
@@ -36,12 +52,23 @@ string studente::get_cognome() //metodo di accesso GETTER al atributo "matricola
 
 void studente::set_cognome(string cgn) //metodo di accesso SETTER al atributo "matricola"
 {
-    studente::cognome = cgn;
+    cognome = cgn;
 }
 
-void stampa()
+int studente::get_test() const
+{
+    return test;
+}
+
+void studente::stampa()
 {
     cout << get_matricola() << endl;
     cout << get_nome() << endl;
-    cout << get_cognome() << endl << endl;
+    cout << get_cognome() << endl;
+    cout << get_test() << endl<<endl;
+}
+
+void set_n  (studente& s, string n)
+{
+    s.nome = n;
 }

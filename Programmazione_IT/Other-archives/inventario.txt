@@ -1,0 +1,5 @@
+codice	descrizione	prezzo	quantità
+1	penna		2.5	10
+2	gomma		2.0	15
+3	quaderno	3.0	5
+4	riga		5.0	2

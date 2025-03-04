@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/sem.h>
+#include <sys/shm.h>
+#include <sys/wait.h>
+
+void signal_sem(int sem_id);
+void wait_sem(int sem_id);
+
+int sem_id;  // ID del semaforo
+
+int main() {
+    int shm_id = shmget(IPC_PRIVATE, sizeof(int), 0666 | IPC_CREAT); //Concede un espacio de memoria
+    if (shm_id == -1) {
+        printf("P1: Shared memory error\n");
+        return 3;
+    }
+
+    int *shared_variable = (int *)shmat(shm_id, NULL, 0);
+    if (shared_variable == (void *)-1) {
+        printf("P1: Shared memory attach error\n");
+        return 4;
+    }
+
+    *shared_variable = 0;  // Inizializzazione della variabile condivisa
+
+    printf("P1: hello\n\n");
+    sem_id = semget(IPC_PRIVATE, 1, 0666 | IPC_CREAT);
+    if (sem_id == -1) {
+        printf("P1: Semaphore error\n");
+        return 1;
+    }
+    printf("P1: Semaphore ok\n");
+
+    if (semctl(sem_id, 0, SETVAL, 1) == -1) {  // Inizializzo a 1
+        printf("P1: Sem error\n");
+        return 2;
+    }
+
+    pid_t pid = fork();  // Creazione del processo figlio
+    if (pid == -1) {
+        printf("Fork failed\n");
+    } else if (pid == 0) {
+        printf("P2: Working!\n");
+        for (int i = 0; i < 100; i++) {
+            wait_sem(sem_id);
+            printf("P2: shared_variable %d\n", *shared_variable);
+            (*shared_variable)++;
+            usleep(150000); // simulo del carico computazionale
+            signal_sem(sem_id);
+        }
+
+        shmdt(shared_variable);  // Distacco dalla memoria condivisa
+        return 4; 
+    } else {
+        printf("P1: Working!\n");
+        for (int i = 0; i < 2; i++) {
+            wait_sem(sem_id);
+            printf("P1: shared_variable %d\n", *shared_variable);
+            (*shared_variable)--;
+            //usleep(150000);
+            signal_sem(sem_id);
+        }
+
+        wait(NULL);  // Aspetto il termine del processo figlio
+
+        printf("\n\nP1: Final shared_variable %d\n", *shared_variable);
+
+        // Pulizia delle risorse
+        shmdt(shared_variable);               // Distacco dalla memoria condivisa
+        shmctl(shm_id, IPC_RMID, NULL);       // Rimozione della memoria condivisa
+        semctl(sem_id, 0, IPC_RMID);          // Rimozione del semaforo
+
+        printf("\n\n");
+    }
+    return 0;
+}
+
+
+void signal_sem(int sem_id) {
+    struct sembuf sem_op;
+    sem_op.sem_num = 0;  // Posizione del semaforo nell'array
+    sem_op.sem_op = 1;   // Incremento del semaforo (rilascio)
+    sem_op.sem_flg = 0;  // Non usiamo flag particolari
+    if (semop(sem_id, &sem_op, 1) == -1) {
+        printf("Error: signal failed\n");
+    }
+}
+
+void wait_sem(int sem_id) {
+    struct sembuf sem_op;
+    sem_op.sem_num = 0;  // Posizione del semaforo nell'array
+    sem_op.sem_op = -1;  // Decremento del semaforo (acquisizione)
+    sem_op.sem_flg = 0;  // Non usiamo flag particolari
+    if (semop(sem_id, &sem_op, 1) == -1) {
+        printf("Error: wait failed\n");
+    }
+}
